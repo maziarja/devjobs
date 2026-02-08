@@ -23,7 +23,7 @@ function DarkMode() {
     <div className="flex items-center gap-4">
       <IconSun />
       <div
-        className={`bg-background relative flex h-6 w-12 items-center rounded-xl`}
+        className={`bg-neutral-0 relative flex h-6 w-12 items-center rounded-xl`}
       >
         <button
           onClick={handleDarkMode}

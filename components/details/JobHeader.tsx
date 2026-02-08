@@ -44,7 +44,7 @@ function JobHeader({ job }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             href={job.website}
-            className="bg-primary/10 hover:bg-primary/20 text-primary text-preset-4-bold inline-flex h-12 cursor-pointer items-center justify-center rounded-md px-5"
+            className="bg-primary/10 dark:bg-neutral-0/10 dark:text-neutral-0 hover:bg-primary/20 text-primary text-preset-4-bold inline-flex h-12 cursor-pointer items-center justify-center rounded-md px-5"
           >
             Company Site
           </a>

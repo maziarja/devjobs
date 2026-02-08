@@ -9,7 +9,7 @@ function JobDetails({ job }: Props) {
     <div className="bg-card space-y-8 rounded-md px-6 py-10 md:space-y-10 md:p-11">
       <div className="flex flex-col gap-14 md:flex-row md:items-center md:justify-between">
         <div className="space-y-1 md:space-y-1.5">
-          <div className="text-preset-4 text-card-foreground 1 flex items-center gap-3">
+          <div className="text-preset-4 text-secondary-foreground flex items-center gap-3">
             <p>{job.postedAt}</p>
             <div className="bg-card-foreground size-1 rounded-full" />
             <p>{job.contract}</p>
@@ -29,15 +29,17 @@ function JobDetails({ job }: Props) {
         </a>
       </div>
       <div className="space-y-14 md:space-y-11">
-        <p className="text-preset-4 text-card-foreground">{job.description}</p>
+        <p className="text-preset-4 text-secondary-foreground">
+          {job.description}
+        </p>
         <div className="space-y-8 md:space-y-6">
           <div className="space-y-6">
             <p className="text-preset-3 text-foreground">Requirements</p>
-            <p className="text-preset-4 text-card-foreground">
+            <p className="text-preset-4 text-secondary-foreground">
               {job.requirements.content}
             </p>
           </div>
-          <ul className="text-preset-4 text-card-foreground flex flex-col gap-2">
+          <ul className="text-preset-4 text-secondary-foreground flex flex-col gap-2">
             {job.requirements.items.map((item, i) => (
               <li key={i} className="flex gap-8">
                 <span className="bg-primary mt-2.5 size-1 shrink-0 rounded-full" />
@@ -49,11 +51,11 @@ function JobDetails({ job }: Props) {
         <div className="space-y-8 md:space-y-6">
           <div className="space-y-6">
             <p className="text-preset-3 text-foreground">What You Will Do</p>
-            <p className="text-preset-4 text-card-foreground">
+            <p className="text-preset-4 text-secondary-foreground">
               {job.role.content}
             </p>
           </div>
-          <ul className="text-preset-4 text-card-foreground flex flex-col gap-2">
+          <ul className="text-preset-4 text-secondary-foreground flex flex-col gap-2">
             {job.role.items.map((item, i) => (
               <li key={i} className="flex gap-8">
                 <span className="text-primary text-preset-4-bold mt-0.5">
