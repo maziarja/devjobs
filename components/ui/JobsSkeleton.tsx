@@ -2,12 +2,15 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import Header from "../share/Header";
 import FilterJobs from "../home/FilterJobs";
+import { Suspense } from "react";
 
 export default function JobsSkeleton() {
   return (
     <>
       <Header>
-        <FilterJobs />
+        <Suspense fallback={null}>
+          <FilterJobs />
+        </Suspense>
       </Header>
       <div className="mt-24.25 flex max-w-292 flex-col gap-10 pb-20 md:mt-27.5 md:gap-14 md:pb-16.25 lg:mx-auto">
         <div className="grid gap-12.25 px-6 md:grid-cols-2 md:gap-x-2.5 md:gap-y-16.25 md:px-7.25 lg:grid-cols-3 lg:gap-x-7.5">
