@@ -1,7 +1,6 @@
 import mongoose, { Model, models, Schema } from "mongoose";
 
 export type DevjobsType = {
-  _id: Schema.Types.ObjectId;
   company: string;
   logo: string;
   logoBackground: string;

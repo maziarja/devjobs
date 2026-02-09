@@ -2,6 +2,7 @@ import { getJobById } from "@/app/_actions/getJobById";
 import JobDetails from "@/components/details/JobDetails";
 import JobFooter from "@/components/details/JobFooter";
 import JobHeader from "@/components/details/JobHeader";
+import EmptyState from "@/components/home/EmptyState";
 import Header from "@/components/share/Header";
 import { Metadata } from "next";
 
@@ -18,7 +19,12 @@ type Props = {
 async function Page({ params }: Props) {
   const { id } = await params;
   const job = await getJobById(id);
-
+  if (job === undefined)
+    return (
+      <div className="mt-20">
+        <EmptyState message="No job found." actionText="Back to home" />
+      </div>
+    );
   return (
     <section className="space-y-6">
       <Header>

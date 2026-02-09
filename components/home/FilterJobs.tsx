@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Checkbox } from "../ui/checkbox";
 import IconLocation from "../ui/icon/icon-location";
 import IconSearch from "../ui/icon/icon-search";
@@ -9,16 +8,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 function FilterJobs() {
   const searchParams = useSearchParams();
-  const fullTime = searchParams.get("full-time");
-  const [checked, setChecked] = useState(fullTime === "true");
+  const fullTimeFromUrl = searchParams.get("fullTime") === "true";
   const params = new URLSearchParams(searchParams);
   const router = useRouter();
   const title = searchParams.get("title");
   const location = searchParams.get("location");
-
-  useEffect(() => {
-    setChecked(fullTime === "true");
-  }, [fullTime]);
 
   function handleFilterJobs(formData: FormData) {
     const submitType = formData.get("submitType");
@@ -30,27 +24,34 @@ function FilterJobs() {
       params.delete("title");
     }
 
-    if (checked) {
-      params.set("full-time", checked?.toString());
-    } else {
-      params.delete("full-time");
-    }
-
     if (submitType === "mobile") {
       const location = formData.get("location-mobile");
+      const fullTime = formData.get("fullTime-mobile");
       if (location) {
         params.set("location", location.toString());
       } else {
         params.delete("location");
       }
+      if (fullTime) {
+        params.set("fullTime", "true");
+      } else {
+        params.delete("fullTime");
+      }
     }
 
     if (submitType === "desktop") {
       const location = formData.get("location");
+      const fullTime = formData.get("fullTime");
+
       if (location) {
         params.set("location", location.toString());
       } else {
         params.delete("location");
+      }
+      if (fullTime) {
+        params.set("fullTime", "true");
+      } else {
+        params.delete("fullTime");
       }
     }
 
@@ -93,16 +94,16 @@ function FilterJobs() {
         </div>
 
         <div className="flex items-center gap-6">
-          <MobileFilterDialog checked={checked} setChecked={setChecked} />
+          <MobileFilterDialog />
           <div className="hidden items-center gap-4 md:flex">
             <Checkbox
-              checked={checked}
-              onCheckedChange={() => setChecked((c) => !c)}
-              id="full-time"
-              name="full-time"
+              key={fullTimeFromUrl ? "checked" : "unchecked"}
+              defaultChecked={fullTimeFromUrl}
+              id="fullTime"
+              name="fullTime"
             />
             <label
-              htmlFor="full-time"
+              htmlFor="fullTime"
               className="text-preset-4-bold text-foreground"
             >
               Full Time <span className="hidden lg:inline-block">Only</span>
@@ -115,9 +116,9 @@ function FilterJobs() {
             value={"desktop"}
             className="bg-primary ml-auto flex size-12 cursor-pointer items-center justify-center rounded-md hover:bg-indigo-300 md:size-auto md:px-3.5 md:py-3 lg:px-8"
           >
-            <div className="md:hidden">
+            <span className="md:hidden">
               <IconSearch className="fill-neutral-0" />
-            </div>
+            </span>
             <span className="text-preset-4-bold text-neutral-0 hidden md:inline-block">
               Search
             </span>

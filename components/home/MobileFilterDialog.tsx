@@ -12,14 +12,10 @@ import { Checkbox } from "../ui/checkbox";
 import IconLocation from "../ui/icon/icon-location";
 import { useSearchParams } from "next/navigation";
 
-type Props = {
-  checked: boolean;
-  setChecked: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-function MobileFilterDialog({ checked, setChecked }: Props) {
+function MobileFilterDialog() {
   const searchParams = useSearchParams();
   const location = searchParams.get("location");
+  const fullTimeFromUrl = searchParams.get("fullTime") === "true";
 
   return (
     <Dialog>
@@ -44,19 +40,20 @@ function MobileFilterDialog({ checked, setChecked }: Props) {
               id="location-mobile"
               defaultValue={location || ""}
               placeholder="Filter by location..."
-              className="text-preset-4 block text-slate-900 caret-indigo-500 outline-none"
+              className="text-preset-4 text-foreground block caret-indigo-500 outline-none"
             />
           </div>
           <div className="bg-card-foreground h-px w-full opacity-20" />
           <div className="flex items-center gap-4 px-6">
             <Checkbox
-              checked={checked}
-              onCheckedChange={() => setChecked((c) => !c)}
-              id="full-time"
-              name="full-time"
+              form="filter-jobs-form"
+              key={fullTimeFromUrl ? "checked" : "unchecked"}
+              defaultChecked={fullTimeFromUrl}
+              id="fullTime-mobile"
+              name="fullTime-mobile"
             />
             <label
-              htmlFor="full-time"
+              htmlFor="fullTime-mobile"
               className="text-preset-4-bold text-foreground"
             >
               Full Time Only

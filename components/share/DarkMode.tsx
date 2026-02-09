@@ -5,19 +5,19 @@ import IconSun from "../ui/icon/icon-sun";
 import { useTheme } from "next-themes";
 
 function DarkMode() {
-  const { setTheme, theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { setTheme, theme } = useTheme();
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
-  function handleDarkMode() {
-    setTheme(theme === "light" ? "dark" : "light");
-  }
-
   if (!mounted) return null;
+
+  function handleDarkMode() {
+    setTheme(theme === "dark" ? "light" : "dark");
+  }
 
   return (
     <div className="flex items-center gap-4">
