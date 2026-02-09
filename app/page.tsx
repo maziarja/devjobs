@@ -3,6 +3,7 @@ import Header from "@/components/share/Header";
 import { getJobs } from "./_actions/getJobs";
 import FilterJobs from "@/components/home/FilterJobs";
 import EmptyState from "@/components/home/EmptyState";
+import { Suspense } from "react";
 
 type Props = {
   searchParams: Promise<{
@@ -26,7 +27,9 @@ async function Page({ searchParams }: Props) {
   return (
     <section>
       <Header>
-        <FilterJobs />
+        <Suspense fallback={null}>
+          <FilterJobs />
+        </Suspense>
       </Header>
       <div className="mt-24.25 flex max-w-292 flex-col gap-10 pb-20 md:mt-27.5 md:gap-14 md:pb-16.25 lg:mx-auto">
         {jobs.length > 0 ? (
