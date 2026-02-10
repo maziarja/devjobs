@@ -15,8 +15,16 @@ function DarkMode() {
 
   if (!mounted) return null;
 
+  const systemDarkMode = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+
   function handleDarkMode() {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(
+      theme === "dark" || (theme === "system" && systemDarkMode)
+        ? "light"
+        : "dark",
+    );
   }
 
   return (
@@ -27,7 +35,7 @@ function DarkMode() {
       >
         <button
           onClick={handleDarkMode}
-          className={`absolute ${theme === "dark" ? "translate-x-6" : "translate-x-0"} bg-primary mx-1.5 size-3.5 cursor-pointer rounded-full transition-all duration-200`}
+          className={`absolute ${theme === "dark" || (theme === "system" && systemDarkMode) ? "translate-x-6" : "translate-x-0"} bg-primary mx-1.5 size-3.5 cursor-pointer rounded-full transition-all duration-200`}
         />
       </div>
       <IconMoon />

@@ -1,6 +1,7 @@
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogTitle,
@@ -61,15 +62,17 @@ function MobileFilterDialog() {
           </div>
         </div>
         <DialogFooter className="px-6">
-          <Button
-            form="filter-jobs-form"
-            type="submit"
-            name="submitType"
-            value={"mobile"}
-            className="text-preset-4-bold! w-full"
-          >
-            Search
-          </Button>
+          <DialogClose asChild>
+            <Button
+              form="filter-jobs-form"
+              type="submit"
+              name="submitType"
+              value={"mobile"}
+              className="text-preset-4-bold! w-full"
+            >
+              Search
+            </Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
